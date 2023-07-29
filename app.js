@@ -1,5 +1,6 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
+const routes = require('./routes/index')
 const methodOverride = require('method-override')
 const bcrypt = require('bcryptjs')
 
@@ -14,10 +15,8 @@ app.set('views', './views')
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 
+app.use(routes)
 
-app.use('/', (req, res) => {
-  res.render('index')
-})
 
 app.listen(port, () => {
   console.log(`It's running on localhost:${port}`)
