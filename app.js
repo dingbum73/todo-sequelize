@@ -3,6 +3,7 @@ const session = require('express-session')
 const exphbs = require('express-handlebars')
 const bodyParsr = require('body-parser')
 const routes = require('./routes/index')
+const flash = require('connect-flash')
 const methodOverride = require('method-override')
 const usePassport = require('./config/passport')
 
@@ -30,10 +31,13 @@ app.use(methodOverride('_method'))
 
 usePassport(app)
 
+app.use(flash())
 // 設定middleware ，在passport之後
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.isAuthenticated()
   res.locals.user = req.user
+  res.locals.success_msg = req.flash('success_msg')
+  res.locals.warning_msg = req.flash('warning_msg')
   next()
 })
 
