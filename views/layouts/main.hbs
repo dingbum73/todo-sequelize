@@ -12,7 +12,7 @@
 <body>
   <header>
     <nav class="navbar navbar-dark justify-content-between" style="background-color: #20e9e6;">
-      <a class="navbar-brand" href="/">todo-sequelize</a>
+      <a class="navbar-brand" href="/">{{#if isAuthenticated}}{{user.name}}{{/if}}'s todo-sequelize</a>
       {{#if isAuthenticated}}
       <a href="/users/logout" class="btn btn-outline-light">Logout</a>
       {{else}}
